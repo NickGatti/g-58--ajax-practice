@@ -22,23 +22,6 @@ $( document ).ready( function () {
         } )
     }
 
-    function getAuthors( e ) {
-        e.preventDefault()
-        $.get( 'https://tmartin-books-api.herokuapp.com/books', function ( data ) {
-            $( '.results' ).empty()
-            for ( let i = 0; i < data.length; i++ ) {
-                let which = 'bookNum' + i
-                $( '.results' ).append( `<div class="book" id="${which}"></div>` )
-                for ( let key in data[ i ] ) {
-                    if ( key === "author_id" ) {
-                        let passArg = data[ i ][ key ]
-                        findAuthors( passArg, which )
-                    }
-                }
-            }
-        } )
-    }
-
     function getGenre( e ) {
         e.preventDefault()
         $.get( 'https://tmartin-books-api.herokuapp.com/genres', function ( data ) {
@@ -72,6 +55,7 @@ $( document ).ready( function () {
             }
         } )
     }
+
     $( '#getBooks' ).click( function ( e ) {
         e.preventDefault()
         mainToName( [ 'title', 'author_id' ] )
