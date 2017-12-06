@@ -20,8 +20,8 @@ $( document ).ready( function () {
                             if ( key === keyComparison[ x ] ) {
                                 if ( key === 'author_id' ) {
                                     let passArg = data[ i ][ key ]
-                                    findAuthors( passArg, which )
                                     book += '<h3>Author</h3>'
+                                    findAuthors( passArg, which )
                                 } else {
                                     book += '<h3>Title</h3>'
                                     book += `<p>${data[i][key]}</p>`
@@ -29,9 +29,12 @@ $( document ).ready( function () {
                             }
                         }
                     } else if ( keyComparison.id === data[ i ].genre_id ) {
+                        book += '<h3>Title</h3>'
+                        book += `<p>${data[ i ][ 'title' ]}</p>`
+                        book += '<h3>Year</h3>'
+                        book += `<p>${data[ i ][ 'year_published' ]}</p>`
+                        book += '<h3>Author</h3>'
                         findAuthors( data[ i ].author_id, which )
-                        book += `<p>Title: ${data[ i ][ 'title' ]}</p>`
-                        book += `<p>Year: ${data[ i ][ 'year_published' ]}</p>`
                         break;
                     }
                 }
