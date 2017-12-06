@@ -61,6 +61,7 @@ div {
 }
 
 .book {
+    padding: 1em;
     width: 400px;
     height: 200px;
     float: left;

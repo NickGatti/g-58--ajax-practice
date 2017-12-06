@@ -21,7 +21,9 @@ $( document ).ready( function () {
                 for ( let key in data[ i ] ) {
                     if ( key === "author_id" ) {
                         $.get( 'https://tmartin-books-api.herokuapp.com/authors/' + data[ i ][ key ], function ( author ) {
-                            $( "#" + which ).append( `<p>${author[0].first_name} ${author[0].last_name}</p>` )
+                            for ( let z = 0; z < author.length; z++ ) {
+                                $( "#" + which ).append( `<p>${author[z].first_name} ${author[z].last_name}</p>` )
+                            }
                         } )
                     }
 
