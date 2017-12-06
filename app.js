@@ -8,7 +8,7 @@ $( document ).ready( function () {
         } )
     }
 
-    function mainToName( keyComparison ) {
+    function main( keyComparison ) {
         $.get( 'https://tmartin-books-api.herokuapp.com/books', function ( data ) {
             $( '.results' ).empty()
             for ( let i = 0; i < data.length; i++ ) {
@@ -52,7 +52,7 @@ $( document ).ready( function () {
         $.get( 'https://tmartin-books-api.herokuapp.com/genres', function ( data ) {
             for ( let i = 0; i < data.length; i++ ) {
                 if ( data[ i ].genre === $( '#search' ).val() ) {
-                    mainToName( {
+                    main( {
                         'genre': $( '#search' ).val(),
                         'id': data[ i ].id
                     } )
@@ -64,11 +64,11 @@ $( document ).ready( function () {
 
     $( '#getBooks' ).click( function ( e ) {
         e.preventDefault()
-        mainToName( [ 'title', 'author_id' ] )
+        main( [ 'title', 'author_id' ] )
     } )
     $( '#getAuthors' ).click( function ( e ) {
         e.preventDefault()
-        mainToName( [ 'author_id' ] )
+        main( [ 'author_id' ] )
     } )
     $( '#findBooks' ).click( getGenre )
 } )
