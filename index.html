@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Books</title>
-    <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript" src="app.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="nav">
-        <div class="tab" id="getBooks">
-          <h3>Get Books</h3>
-        </div><div class="tab" id="getAuthors">
-          <h3>Get Authors</h3>
-        </div><div class="bar">
-          <input id="search" type="text" name="search" value="">
-        </div><div class="tab" id="findBooks">
-          <h3>Find Books</h3>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Books</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="nav">
+                <div class="tab" id="getBooks">
+                    <h3>Get Books</h3>
+                </div>
+                <div class="tab" id="getAuthors">
+                    <h3>Get Authors</h3>
+                </div>
+                <div class="bar">
+                    <input id="search" type="text" name="search" value="">
+                </div>
+                <div class="tab" id="findBooks">
+                    <h3>Find Books</h3>
+                </div>
+            </div>
+            <div class="results">
+                <!-- Your Data Here -->
+            </div>
         </div>
-      </div>
-      <div class="results">
-        <!-- Your Data Here -->
-      </div>
-    </div>
-  </body>
+    </body>
+
 </html>
