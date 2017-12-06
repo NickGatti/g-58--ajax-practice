@@ -1,11 +1,19 @@
 $( document ).ready( function () {
 
+    let book;
+
+    let findAuthors = ( data, which ) => {
+        $.get( 'https://tmartin-books-api.herokuapp.com/authors/' + data, function ( author ) {
+            $( "#" + which ).append( `<p>${author[0].first_name} ${author[0].last_name}</p>` )
+        } )
+    }
+
     function mainToName( keyComparison ) {
         $.get( 'https://tmartin-books-api.herokuapp.com/books', function ( data ) {
             $( '.results' ).empty()
             for ( let i = 0; i < data.length; i++ ) {
                 let which = 'bookNum' + i
-                $( '.results' ).append( `<div class="book" id="${which}"></div>` )
+                book = `<div class="book" id="${which}">`
                 for ( let key in data[ i ] ) {
                     if ( Array.isArray( keyComparison ) ) {
                         for ( let x = 0; x < keyComparison.length; x++ ) {
@@ -13,14 +21,24 @@ $( document ).ready( function () {
                                 if ( key === 'author_id' ) {
                                     let passArg = data[ i ][ key ]
                                     findAuthors( passArg, which )
+                                    book += '<h3>Author</h3>'
                                 } else {
-                                    $( "#" + which ).append( `<p>Title: ${data[i][key]}</p>` )
+                                    book += '<h3>Title</h3>'
+                                    book += `<p>${data[i][key]}</p>`
                                 }
                             }
                         }
                     } else if ( keyComparison.id === data[ i ].genre_id ) {
-                        $( "#" + which ).append( `<p>${data[i][key]}</p>` )
+                        findAuthors( data[ i ].author_id, which )
+                        book += `<p>Title: ${data[ i ][ 'title' ]}</p>`
+                        book += `<p>Year: ${data[ i ][ 'year_published' ]}</p>`
+                        break;
                     }
+                }
+                book += '</div>'
+                $( '.results' ).append( book )
+                if ( $( "#" + which ).contents().length === 0 ) {
+                    $( '#' + which ).remove()
                 }
             }
         } )
@@ -37,14 +55,6 @@ $( document ).ready( function () {
                     } )
                     break;
                 }
-            }
-        } )
-    }
-
-    function findAuthors( data, which ) {
-        $.get( 'https://tmartin-books-api.herokuapp.com/authors/' + data, function ( author ) {
-            for ( let z = 0; z < author.length; z++ ) {
-                $( "#" + which ).append( `<p>${author[z].first_name} ${author[z].last_name}</p>` )
             }
         } )
     }
