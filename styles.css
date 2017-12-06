@@ -41,6 +41,7 @@ div {
     position: relative;
     top: 50%;
     transform: translateY(-70%);
+    user-select: none;
 }
 
 .bar {
